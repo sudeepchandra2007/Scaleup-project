@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful LinkedIn Clone</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary: #0A66C2;
+            /* LinkedIn Blue */
+            --secondary: #F3F2EF;
+            /* Light Gray */
+            --accent: #000000;
+            /* Black */
+            --dark: #333333;
+            --light: #FFFFFF;
+            --gradient-1: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            --gradient-2: linear-gradient(45deg, #a18cd1, #fbc2eb);
+            --gradient-3: linear-gradient(45deg, #fcb69f, #ffeb3b);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            /* Vibrant gradient */
+            color: var(--dark);
+            line-height: 1.6;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Navbar */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            padding: 15px 30px;
+            color: var(--light);
+            position: fixed;
+            top: -100px;
+            width: 100%;
+            z-index: 1000;
+            animation: slideDown 1s ease forwards;
+        }
+        
+        @keyframes slideDown {
+            0% {
+                top: -100px;
+            }
+            100% {
+                top: 0;
+            }
+        }
+        
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        .navbar ul li {
+            margin-left: 25px;
+        }
+        
+        .navbar ul li a {
+            color: var(--light);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar ul li a:hover {
+            color: #ffeb3b;
+        }
+        /* Hero Section */
+        
+        .hero {
+            background-color: var(--light);
+            padding: 100px 0 60px 0;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            color: #ff7e5f;
+            /* Bright coral color */
+            margin-bottom: 10px;
+            animation: slideUp 1.5s ease;
+        }
+        
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .hero .cta-button {
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            color: var(--light);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        
+        .cta-button:hover {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            /* Rainbow button effect */
+            transform: scale(1.1);
+        }
+        /* Main Content */
+        
+        .content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 60px 40px;
+            background-color: var(--secondary);
+        }
+        
+        .card {
+            background: var(--gradient-1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin: 10px;
+            transition: all 0.4s ease;
+        }
+        
+        .card:nth-child(2) {
+            background: var(--gradient-2);
+        }
+        
+        .card:nth-child(3) {
+            background: var(--gradient-3);
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card h3 {
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            color: var(--light);
+        }
+        /* Footer */
+        
+        .footer {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 0px;
+            margin-top: 40px;
+        }
+        
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">ScaleUp</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">My Network</a></li>
+            <li><a href="#">Messages</a></li>
+            <li><a href="#">Notifications</a></li>
+            <li><a href="#">My Ideas</a></li>
+            <!-- Added My Ideas link here -->
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome Tech Innovators</h1>
+        <p>Find your investor</p>
+        <button class="cta-button">Find Now</button>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="card">
+            <h3>Professional Network</h3>
+            <p>Expand your connections with people in your industry.</p>
+        </div>
+        <div class="card">
+            <h3>Premium Tip</h3>
+            <p>Get your AI-powered assistant with ScaleUp Premium right now.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 ScaleUp. All rights reserved.</p>
+    </div>
+
+</body>
+
+</html>

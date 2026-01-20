@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Sponsor Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/kTcGdP3mxZOuWtf3FIkcX+O7PSiRfr5EO6Jx1iUQxKxZQaXSpWz3KZ4qPA3rL4U5iFSCXsggCqXJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f9;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+         :root {
+            --primary: #ff8a80;
+            --secondary: #64b5f6;
+            --tertiary: #ffd54f;
+            --accent: #69f0ae;
+            --dark: #333;
+            --light: #ffffff;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary);
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        .navbar ul li {
+            margin-left: 25px;
+        }
+        
+        .navbar ul li a {
+            font-weight: 500;
+            color: var(--light);
+            transition: color 0.3s ease;
+        }
+        
+        .navbar ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--primary), var(--secondary)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?fit=crop&w=1950&q=80') no-repeat center center/cover;
+            color: var(--light);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 138, 128, 0.6);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: slideInLeft 1s ease-in-out;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            animation: slideInRight 1.2s ease-in-out;
+        }
+        
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: bounceIn 1.5s ease-in-out;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--light);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .section-divider {
+            height: 50px;
+            background-color: var(--primary);
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        }
+        
+        .features {
+            padding: 80px 40px;
+            background-color: var(--light);
+            text-align: center;
+            position: relative;
+        }
+        
+        .features h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .features-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .features-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature {
+            background: linear-gradient(45deg, var(--secondary), var(--tertiary));
+            padding: 30px 20px;
+            border-radius: 10px;
+            flex: 1 1 300px;
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            color: var(--light);
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .feature.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature i {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .feature p {
+            font-size: 16px;
+        }
+        
+        .testimonials {
+            padding: 80px 40px;
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .testimonials h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .testimonials-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .testimonials-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            max-width: 300px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .testimonial.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .testimonial:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .testimonial p {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .testimonial cite {
+            display: block;
+            font-size: 16px;
+            color: var(--primary);
+        }
+        
+        .how-it-works {
+            padding: 80px 40px;
+            background-color: var(--tertiary);
+            text-align: center;
+        }
+        
+        .how-it-works h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .how-it-works-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .how-it-works-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step {
+            background: var(--light);
+            padding: 30px 20px;
+            border-radius: 10px;
+            flex: 1 1 200px;
+            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .step i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .step h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .step p {
+            font-size: 16px;
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .footer p {
+            margin: 0;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: var(--light);
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            position: relative;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: var(--dark);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .modal form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal form label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .modal form input[type="text"],
+        .modal form input[type="email"],
+        .modal form input[type="password"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .modal form .account-type {
+            margin-bottom: 20px;
+        }
+        
+        .modal form .account-type label {
+            margin-right: 10px;
+            font-weight: 400;
+        }
+        
+        .modal form button {
+            padding: 10px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .modal form button:hover {
+            background-color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                background: var(--primary);
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                transition: left 0.3s ease;
+            }
+            .navbar ul.active {
+                left: 0;
+            }
+            .navbar ul li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            .features-container,
+            .testimonials-container,
+            .how-it-works-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" width="100">
+        </div>
+        <ul id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Why Choose Us</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#footer">Contact</a></li>
+            <li><a href="#" id="signupBtn">Sign Up</a></li>
+            <li><a href="#" id="loginBtn">Login</a></li>
+        </ul>
+    </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Find the Perfect Investor for Your Startup</h1>
+            <pre>  <h2>   Unlock funding, mentorship, and resources to scale your startup with ScaleUp.</h2></pre>
+            <button class="cta-button" id="getStartedBtn">Get Started</button>
+        </div>
+    </section>
+    <div class="section-divider"></div>
+    <section class="features" id="features">
+        <h2>Why Choose Us?</h2>
+        <div class="features-container" id="featuresContainer">
+            <div class="feature">
+                <i class="fas fa-rocket"></i>
+                <h3>Fast Sponsorship</h3>
+                <p>Connect with potential sponsors quickly and efficiently.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-handshake"></i>
+                <h3>Reliable Network</h3>
+                <p>Access a network of trusted sponsors and investors.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Expert Guidance</h3>
+                <p>Get mentorship and advice from industry leaders.</p>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials" id="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonials-container" id="testimonialsContainer">
+            <div class="testimonial">
+                <p>"Scale Up helped me find the right sponsors who believed in my vision!"</p>
+                <cite>- Jane Doe, Founder of Tech Innovators</cite>
+            </div>
+            <div class="testimonial">
+                <p>"The platform made connecting with investors easy and hassle-free!"</p>
+                <cite>- John Smith, CEO of Green Solutions</cite>
+            </div>
+            <div class="testimonial">
+                <p>"Thanks to Scale Up, my startup is thriving and growing!"</p>
+                <cite>- Alice Johnson, Co-founder of Health Tech</cite>
+            </div>
+        </div>
+    </section>
+    <section class="how-it-works" id="how-it-works">
+        <h2>How It Works</h2>
+        <div class="how-it-works-container" id="howItWorksContainer">
+            <div class="step">
+                <i class="fas fa-user-plus"></i>
+                <h3>Sign Up</h3>
+                <p>Create a free account to start connecting with investors.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-search"></i>
+                <h3>Find Investors</h3>
+                <p>Use our advanced search tools to find the best match.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-paper-plane"></i>
+                <h3>Get Invested</h3>
+                <p>Secure funding and mentorship for your startup.</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer" id="footer">
+        <p>&copy; 2024 ScaleUp. All rights reserved.</p>
+    </footer>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeLogin">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeSignup">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" name="signup-username" placeholder="Choose a username" required>
+
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" name="signup-email" placeholder="Enter your email" required>
+
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="signup-password" placeholder="Create a password" required>
+
+                <div class="account-type">
+                    <label>Select Account Type:</label><br>
+                    <input type="radio" id="startup" name="accountType" value="Startup Maker" required>
+                    <label for="startup">Startup Maker</label><br>
+                    <input type="radio" id="investor" name="accountType" value="Investor" required>
+                    <label for="investor">Investor</label>
+                </div>
+
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 100
+            );
+        }
+        window.addEventListener('scroll', function() {
+            const featuresContainer = document.getElementById('featuresContainer');
+            const featureItems = featuresContainer.querySelectorAll('.feature');
+            const testimonialsContainer = document.getElementById('testimonialsContainer');
+            const testimonialItems = testimonialsContainer.querySelectorAll('.testimonial');
+            const howItWorksContainer = document.getElementById('howItWorksContainer');
+            const stepItems = howItWorksContainer.querySelectorAll('.step');
+            if (isInViewport(featuresContainer)) {
+                featuresContainer.classList.add('visible');
+                featureItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+            if (isInViewport(testimonialsContainer)) {
+                testimonialsContainer.classList.add('visible');
+                testimonialItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+            if (isInViewport(howItWorksContainer)) {
+                howItWorksContainer.classList.add('visible');
+                stepItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+        });
+        window.addEventListener('load', function() {
+            window.dispatchEvent(new Event('scroll'));
+        });
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeSignup = document.getElementById('closeSignup');
+        getStartedBtn.onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        loginBtn.onclick = function() {
+            loginModal.style.display = "block";
+        }
+        signupBtn.onclick = function() {
+            signupModal.style.display = "block";
+        }
+        closeLogin.onclick = function() {
+            loginModal.style.display = "none";
+        }
+        closeSignup.onclick = function() {
+            signupModal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == signupModal) {
+                signupModal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Investor Login{% endblock %}
+
+{% block content %}
+    <h1>Investor Login</h1>
+    <form action="/login/investor" method="POST">
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" name="user_id" required><br>
+
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}

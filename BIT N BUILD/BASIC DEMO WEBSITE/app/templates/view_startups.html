@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Startup Information{% endblock %}
+
+{% block content %}
+    <h1>Available Startups</h1>
+    {% if startups %}
+        <ul>
+        {% for startup in startups %}
+            <li>
+                <strong>Name:</strong> {{ startup.name }}<br>
+                <strong>Phone:</strong> {{ startup.phone }}<br>
+                <strong>User ID:</strong> {{ startup.id }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No startups available.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+{% endblock %}
+w
